@@ -1,0 +1,23 @@
+
+
+1.DETENER EL SERVICIO 
+sudo service mysql stop
+sudo systemctl stop mysql
+2.DESINSTALAR EL PAQUETE 
+sudo apt-get remove --purge mysql-server mysql-client mysql-common mysql-server-core-* mysql-client-core-*
+3.LIMPIAR PAQUETES NO NECESARIOS
+sudo apt-get autoremove
+4.ELIMINA LOS DIRECTORIOS DE DATOS Y CONFIGURACION
+sudo rm -rf /etc/mysql /var/lib/mysql
+5.ELIMINAR EL USUARIO Y EL GRUPO DE mysql
+sudo deluser mysql
+sudo delgroup mysql
+6.ELIMINAR CUALQUIER CONFIGURACION RESIDUAL
+sudo rm -rf /var/log/mysql
+sudo rm -rf /etc/apparmor.d/abstractions/mysql
+sudo rm -rf /etc/apparmor.d/cache/usr.sbin.mysqld
+7.LIMPIAR LA CONFIGURACION DE APPARMOR(SI SE USA)
+sudo aa-status
+sudo aa-remove-unknown
+sudo systemctl restart apparmor
+
